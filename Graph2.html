@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project-Siqi Jiang</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']});  //load package 
+
+google.charts.setOnLoadCallback(Change4);    //set up setOnLoadCallback
+google.charts.setOnLoadCallback(Change5);    //set up setOnLoadCallback
+
+function Change4() {
+       
+    var listbox = document.getElementById("dropdown4");
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;      //get dropdown value when make selection 
+
+google.charts.setOnLoadCallback(DrawUsaThreeSpending);
+
+function DrawUsaThreeSpending() {
+
+        var USAData = google.visualization.arrayToDataTable([
+            ['Years','Military','Healthcare','Education'],
+            ['2012', 686.55 , 2644.03 ,1016.50],
+            ['2013',  643.28, 2725.86 ,1049.21],
+            ['2014',  613.21,2876.45  ,1075.24],
+            ['2015',  599.35,3047.12  ,1111.55],
+            ['2016',  602.77, 3179.83 ,1141.10],
+          ]);  //USA spending data
+
+        var USADataP = google.visualization.arrayToDataTable([
+            ['Years','Military','Healthcare','Education'],
+            ['2012',  4.24 ,  16.32 , 6.28 ],
+            ['2013',  3.83 ,  16.24 , 6.25 ],
+            ['2014',   3.50 , 16.42 , 6.14 ],
+            ['2015',   3.29 , 16.72 , 6.10 ],
+            ['2016',   3.22 , 17.00 , 6.10 ],
+          ]);   //USA percentage data
+       
+       var options1 = {
+          width: 800,
+          height: 400,
+          title: 'United States Three Spendings Comparison (in Billion $)',
+          vAxis: {title: 'Spending in Billions ($)'},
+            hAxis: {title: 'Years'},
+          bar: {groupWidth: '60%'},
+                    colors: ['#58668b', '#76b4bd','#bdeaee'],
+          isStacked: true   //set up opion1
+                             
+          };
+
+        var options2 = {
+          width: 800,
+          height: 400,
+          title: 'United States Three Spendings Comparison (in Percentage of GDP)',
+          vAxis: {title: 'Percentage of GDP'},
+            hAxis: {title: 'Years'},
+          bar: {groupWidth: '60%'},
+                    colors: ['#cde68c', '#aad1b3','#7ca8a0'],
+          isStacked: true
+                             //set up opion2
+          };
+
+                     
+          var chart = new google.visualization.ColumnChart(document.getElementById("DrawUsaThreeSpending"));
+            
+          if (selValue == 'Compare1') {
+              var view = new google.visualization.DataView(USAData);
+                 view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: "stringify",
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                       3,{ calc: "stringify",
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }]);
+                 options = options1; 
+            
+          }     //if function for making selection of different dataset 
+
+          if (selValue == 'Compare2') {
+               var view = new google.visualization.DataView(USADataP);
+                 view.setColumns([0, 1,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 1) + '%';
+                       },
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 2) + '%';
+                       },
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                       3,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 3) + '%';
+                       },
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }
+                         ]);
+
+                 options = options2; 
+           }   //if function for making selection of different dataset (appear %)
+
+            chart.draw(view, options);
+          }    //draw chart 
+
+          }
+function Change5() {
+       
+    var listbox = document.getElementById("dropdown5");
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;   //load package
+
+google.charts.setOnLoadCallback(DrawSouthKoreaData);  //set up setOnLoadCallback
+
+function DrawSouthKoreaData() {
+
+      var SouthKoreaData = google.visualization.arrayToDataTable([
+            ['Years','Military','Healthcare','Education'],
+            ['2012',  31.95 ,  78.71  ,63.49],
+            ['2013',  34.14 ,  85.88  ,67.44],
+            ['2014',  37.55 ,  96.26  ,73.66],
+            ['2015',  36.57 ,  97.47  ,72.16],
+            ['2016',  37.04 ,  103.81 ,73.35],
+          ]);  //south korea spending data
+
+        var SouthKoreaDataP = google.visualization.arrayToDataTable([
+            ['Years','Military','Healthcare','Education'],
+            ['2012',   2.61  ,  6.44  ,  5.19 ],
+            ['2013',   2.61  ,  6.58  ,  6.58 ],
+            ['2014',   2.66  ,  6.82   , 5.22 ],
+            ['2015',   2.64  ,  7.05   , 5.22 ],
+            ['2016',   2.62  ,  7.34   , 5.18 ],
+          ]);   //south korea percentage data
+       
+       var options1 = {
+          width: 800,
+          height: 400,
+          title: 'South Korea Three Spendings Comparison (in Billion $)',
+          vAxis: {title: 'Spending in Billions ($)'},
+            hAxis: {title: 'Years'},
+          bar: {groupWidth: '60%'},
+                    colors: ['#58668b', '#76b4bd','#bdeaee'],
+          isStacked: true
+                             
+          }; //set up options 1 
+
+        var options2 = {
+          width: 800,
+          height: 400,
+          title: 'South Korea  Three Spendings Comparison (in Percentage of GDP)',
+          vAxis: {title: 'Percentage of GDP'},
+            hAxis: {title: 'Years'},
+          bar: {groupWidth: '60%'},
+                    colors: ['#cde68c', '#aad1b3','#7ca8a0'],
+          isStacked: true
+                             
+          };  //set up options 1 
+
+                     
+          var chart = new google.visualization.ColumnChart(document.getElementById("DrawSouthKoreaData"));
+            
+          if (selValue == 'Compare1') {
+              var view = new google.visualization.DataView(SouthKoreaData);
+                 view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: "stringify",
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                       3,{ calc: "stringify",
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }]);
+                 options = options1; 
+            
+          }  //if function for making selection of different dataset 
+
+          if (selValue == 'Compare2') {
+               var view = new google.visualization.DataView(SouthKoreaDataP);
+                 view.setColumns([0, 1,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 1) + '%';
+                       },
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 2) + '%';
+                       },
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                       3,
+                       { calc: function(dt, row){
+                       return dt.getFormattedValue(row, 3) + '%';
+                       },
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }]);
+
+                 options = options2; 
+           }    //if function for making selection of different dataset (appear %)
+
+            chart.draw(view, options); 
+          }     //draw chart 
+
+          }
+
+
+</script>
+
+</head>
+<body>
+
+<div class="topnav">
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+
+<table><tr>
+<h2> 2. Compare Education and Health to Military Spending </h2>
+
+  <select id="dropdown4" name='select2' onchange="Change4()">
+  <option value="Compare1"> Spendings in Billion $ </option>
+  <option value="Compare2"> Spendings in % GDP </option>
+  </select>
+
+<div id='DrawUsaThreeSpending' style='border: 1px solid #ccc'>
+</div>
+  
+  <select id="dropdown5" name='select2' onchange="Change5()">
+  <option value="Compare1"> Spendings in Billion $ </option>
+  <option value="Compare2"> Spendings in % GDP </option>
+  </select>
+
+<div id='DrawSouthKoreaData' style='border: 1px solid #ccc'>
+</div>
+
+
+</tr>
+</table>
+
+</div>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>

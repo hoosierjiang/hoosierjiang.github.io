@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project-Siqi Jiang</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+ <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']}); //load package 
+   
+google.charts.setOnLoadCallback(Change2);  //set up setOnLoadCallback
+
+function Change2() {
+       
+    var listbox = document.getElementById("dropdown2");
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;    //get dropdown value when make selection 
+
+google.charts.setOnLoadCallback(DrawSpendingVsGDP2009);
+
+function DrawSpendingVsGDP2009() {
+         
+          var Compare = google.visualization.arrayToDataTable([
+            ['Country', 'GDP','Military','Healthcare','Education'],
+            ['United States',14448.93, 669.97,2356.45,975.63],
+            ['China', 5101.70,105.47,221.35,0],
+            ['Japan', 5231.38,51.47,473.87,0],
+            ['Germany', 3418.01,47.47,380.66,166.82],
+            ['United Kingdom', 2394.79,58.59,203.18,122.87],
+            ['France', 2690.22, 66.80,302.86,154.59],
+            ['India',1341.89, 38.83,46.64,43.99],
+            ['Italy', 2185.16,38.30,196.14,99.13],
+            ['Brazil',1667.02, 28.65,139.94,91.08],
+            ['Canada', 1371.15,18.94,144.98,66.54],
+          ]);   //2009 DrawSpendingVsGDP2009 data
+          
+  
+           var options = {
+      title: 'Spendings for Top 10 nations with highest GDP in USD (Billions)',
+          vAxis: {title: 'Country'},
+            hAxis: {title: 'Spending in Billions ($)'},
+          bar: {groupWidth: '100%'},
+                    colors: ['#4d648d', '#3da4ab', '#f6cd61','#fe9c8f']   //options setting 
+      };
+           
+           if (selValue == 'Compare1') { Compare.sort({column: 1, desc: true});}
+           if (selValue == 'Compare2') { Compare.sort({column: 2, desc: true});}
+           if (selValue == 'Compare3') { Compare.sort({column: 3, desc: true});}
+           if (selValue == 'Compare4') { Compare.sort({column: 4, desc: true});}  //if function for dropdown, sorting differently 
+
+           var view = new google.visualization.DataView(Compare);
+               view.setColumns([0, 1,
+                       { calc: function(dt, row){
+            return dt.getFormattedValue(row, 1) + 'B';
+              },
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                        { calc: function(dt, row){
+            return dt.getFormattedValue(row, 2) + 'B';
+              },
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                         
+                       3,{ calc: function(dt, row){
+            return dt.getFormattedValue(row, 3) + 'B';
+              },
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" },
+                       4,{ calc: function(dt, row){
+            return dt.getFormattedValue(row, 4) + 'B';
+              },
+                         sourceColumn: 4,
+                         type: "string",
+                         role: "annotation" }]);      //adding 'B' in the string of each bar 
+                     
+            var chart = new google.visualization.BarChart(document.getElementById("DrawSpendingVsGDP2009"))
+            chart.draw(view, options);               //create bar chart, draw chart 
+          }
+
+        }
+        
+        
+google.charts.setOnLoadCallback(Change3);       //set up setOnLoadCallback
+
+function Change3() {
+       
+    var listbox = document.getElementById("dropdown3");     //get dropdown value when make selection 
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;
+
+google.charts.setOnLoadCallback(DrawSpendingVsGDP2016);     //set up setOnLoadCallback
+
+function DrawSpendingVsGDP2016() {
+         
+           var Compare = google.visualization.arrayToDataTable([
+            ['Country (%)', 'Military(%)','Healthcare(%)','Education(%)'],
+            ['United States', 4.64, 16.31, 6.75],
+            ['China', 2.07, 4.34, 0],
+            ['Japan', 0.98, 9.06, 0],
+            ['Germany' , 1.39,11.14,4.88 ],
+            ['United Kingdom' , 2.45,8.48,5.13],
+            ['France',2.48,11.26,5.75 ],
+            ['India', 2.89,3.48,3.28],
+            ['Italy',  1.75,8.98,4.54 ],
+            ['Brazil', 1.54,8.39,5.46],
+            ['Canada', 1.38,10.57,4.85],
+          ]);    //2009 DrawSpendingVsGDP2016 data
+
+  
+           var options = {
+      title: 'Spendings in Percentage of GDP for Top 10 nations ',
+          vAxis: {title: 'Country'},
+            hAxis: {title: 'Percentage of GDP (%)'},
+          bar: {groupWidth: '100%'},
+                    colors: ['#4d648d', '#3da4ab', '#f6cd61']     //options setting 
+                    
+      };
+           
+           if (selValue == 'Compare1') { Compare.sort({column: 1, desc: true});}
+           if (selValue == 'Compare2') { Compare.sort({column: 2, desc: true});}
+           if (selValue == 'Compare3') { Compare.sort({column: 3, desc: true});}   //if function for dropdown, sorting
+
+           var view = new google.visualization.DataView(Compare);
+               view.setColumns([0, 1,
+                       { calc: function(dt, row){
+            return dt.getFormattedValue(row, 1) + '%';
+              },
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                        { calc: function(dt, row){
+            return dt.getFormattedValue(row, 2) + '%';
+              },
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                         
+                       3,{ calc: function(dt, row){
+            return dt.getFormattedValue(row, 3) + '%';
+              },
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }    //adding '%' in the string of each bar 
+                       ]);
+            var chart = new google.visualization.BarChart(document.getElementById("DrawSpendingVsGDP2016"))
+            chart.draw(view, options);           //create bar chart, draw chart 
+          }
+
+        }
+
+
+</script>
+
+</head>
+<body>
+
+<div class="topnav">     
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+<table><tr>
+<h2> 1.Compare the Spendings to Countries GDP </h2>
+  <b style='text-align:center;'> * Here we take year 2009 as an example:</b><br><br>
+  <b style='text-align:center;'> Bar Chart for Total Spendings </b>
+  <select id="dropdown2" name='select2' onchange="Change2()">
+  <option value="Compare1"> Rank by GDP</option>
+  <option value="Compare2"> Rank by Military </option>
+  <option value="Compare3"> Rank by Healthcare</option>
+  <option value="Compare4"> Rank by Education</option>
+  </select>
+  
+  <div id='DrawSpendingVsGDP2009' style='width: 1000px; height: 800px; border: 1px solid #ccc'></div>
+  
+  <b style='text-align:center;'> Bar Chart for Percentage of its GDP </b>
+  <select id="dropdown3" name='select3' onchange="Change3()">
+  <option value="Compare1"> Rank by Military </option>
+  <option value="Compare2"> Rank by Healthcare</option>
+  <option value="Compare3"> Rank by Education</option>
+  </select>
+  
+  <div id='DrawSpendingVsGDP2016' style='width: 1000px; height: 800px;border: 1px solid #ccc'></div>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>

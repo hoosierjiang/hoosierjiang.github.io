@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['corechart']});   //load package 
+
+google.charts.setOnLoadCallback(Change4);    //set up setOnLoadCallback
+
+function Change4() {
+       
+    var listbox = document.getElementById("dropdown4");
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;     //get dropdown value when make selection
+
+google.charts.setOnLoadCallback(DrawUsaThreeSpending);   //set up setOnLoadCallback
+
+function DrawUsaThreeSpending() {
+     
+        var Military = google.visualization.arrayToDataTable([
+            ['Country', 'Military', 'GDP',  'Country', 'Population in Billion'],
+            ['USA',     1870.92 , 58064.47, 'USA' , 322.18], 
+            ['Japan',   363.35  , 38565.36, 'Japan' , 127.75], 
+            ['Germany', 508.63  , 42532.81 ,'Germany', 82.18], 
+            ['UK' ,     747.83  , 40671.99 ,'UK', 65.38], 
+            ['France' , 861.79  , 37033.85 ,'France', 66.73], 
+            ['Australia', 1049.67, 50154.85 ,'Australia',  24.13], 
+            ['Italy' ,  467.62  , 30811.58 ,'Italy', 60.67], 
+            ['Brazil' , 116.65  , 8650.38  ,'Brazil', 207.65], 
+            ['Canada',  498.89  , 42069.80 ,'Canada',36.29],
+            ['South Korea',   729.33  ,  27854.91  ,'South Korea', 50.79],
+            ['South Africa',  56.96 ,  5290.34 ,'South Africa', 56.02],
+            ['Russia',  490.38 ,   8910.00 ,'Russia',  143.96],
+            ['Mexico',  48.61  ,  8450.87  ,'Mexico',  127.54 ],
+          ]);  //Military data
+          
+        var Healthcare = google.visualization.arrayToDataTable([
+            ['Country', 'Healthcare', 'GDP',  'Country', 'Population in Billion'],
+            ['USA',      9869.74 , 58064.47 , 'USA', 322.18],
+            ['Japan' ,   4233.03 , 38565.36 , 'Japan', 127.75], 
+            ['Germany' , 4714.26 , 42532.81 , 'Germany', 82.18], 
+            ['UK' ,      3958.02 , 40671.99 ,'UK', 65.38], 
+            ['France' ,  4263.36 , 37033.85 , 'France', 66.73], 
+            ['Australia' ,  5002.36 , 50154.85 ,'Australia', 24.13],
+            ['Italy',    2738.71 , 30811.58 , 'Italy', 60.67], 
+            ['Brazil',   795.66  ,  8650.38  , 'Brazil',207.65], 
+            ['Canada',   4458.21 , 42069.80  ,'Canada', 36.29],
+            ['South Korea', 2043.86 , 27854.91 ,'South Korea', 50.79],
+            ['South Africa',  428.18 ,  5290.34 ,'South Africa', 56.02],
+            ['Russia',  469.13 ,   8910.00 ,'Russia',  143.96],
+            ['Mexico',   461.79 ,  8450.87  ,'Mexico',  127.54 ],
+          ]);  //healthcare data
+          
+        var Education = google.visualization.arrayToDataTable([
+          ['Country', 'Education', 'GDP',  'Country', 'Population in Billion'],
+          ['USA',      3541.81   , 58064.47 , 'USA',  322.18],
+          ['Argentina', 708.52,12715.26,'Argentina',  43.85],
+          ['Japan',     1338.22,38565.36,'Japan',     127.75],
+          ['Germany',   2041.97,42532.81,'Germany',    82.18],
+          ['UK',      2231.66, 40671.99,'UK',          65.38],
+          ['France',   2011.90,37033.85,'France',      66.73],
+          ['Australia', 2648.33,50154.85,'Australia',  66.73],
+          ['Italy', 1179.91 ,30811.58,'Italy',       60.67],
+          ['Mexico',414.94, 8450.87,'Mexico',        127.54],
+          ['South Africa',314.28,5290.34,'South Africa', 56.02],
+          ['South Korea',1444.16,27854.91,'South Korea', 50.79], 
+          ['Russia',333.52,8910.00,'Russia',143.96],
+         ]);   //education data
+
+       
+        var options1 = {
+        title: 'Compare Military to GDP ($ Per Capita) ',
+        hAxis: {title: 'GDP Per Capita ($)'},
+        vAxis: {title: 'Military Per Capita ($)'},
+           };  //opitons for Military 
+
+        var options2 = {title: 'Compare Healthcare to GDP ($ Per Capita) ',
+        hAxis: {title: 'GDP Per Capita ($)'},
+        vAxis: {title: 'Healthcare Per Capita ($)'},
+          };  //opitons for Healthcare  
+          
+        var options3 = {
+        title: 'Compare Education to GDP ($ Per Capita) ',
+        hAxis: {title: 'GDP Per Capita ($)'},
+        vAxis: {title: 'Education Per Capita ($)'},
+           };  //opitons for education  
+
+                     
+         var chart = new google.visualization.BubbleChart(document.getElementById('DrawUsaThreeSpending'));
+            
+          if (selValue == 'Compare1') {
+              var view = new google.visualization.DataView(Military);
+                  options = options1; 
+             }  //if function for making selection of different dataset (Military)
+
+          if (selValue == 'Compare2') {
+              var view = new google.visualization.DataView(Healthcare);
+                 options = options2; 
+           }   //if function for making selection of different dataset (Healthcare)
+           
+         if (selValue == 'Compare3') {
+              var view = new google.visualization.DataView(Education);
+                 options = options3; 
+           }  //if function for making selection of different dataset (Education)
+
+          chart.draw(view, options);
+          } //draw chart 
+
+        }
+
+
+</script>
+
+</head>
+<body>
+
+<div class="topnav">
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+<table><tr>
+<h2> 3. Military | Healthcare | Education VS GDP Per Capita </h2>
+
+  <select id="dropdown4" name='select2' onchange="Change4()">
+  <option value="Compare1">  Military vs GDP </option>
+  <option value="Compare2"> Healthcare vs GDP </option>
+  <option value="Compare3"> Education vs GDP </option>
+  </select>
+
+<div id='DrawUsaThreeSpending' style='width: 700px; height: 600px;border: 1px solid #ccc; padding: 1px solid #ccc''></div>
+
+</tr>
+</table>
+</div>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>

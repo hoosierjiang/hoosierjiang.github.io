@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});  //load package 
+      google.charts.setOnLoadCallback(drawVisualization);   //set up setOnLoadCallback
+
+google.charts.setOnLoadCallback(Change6);
+
+function Change6() {
+       
+    var listbox = document.getElementById("dropdown6");
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;    //get dropdown value when make selection 
+
+google.charts.setOnLoadCallback(drawVisualization);    //set up setOnLoadCallback
+
+function drawVisualization() {
+
+var Data = google.visualization.arrayToDataTable([
+['Countries','2012 Healthcare','2013 Healthcare','2014 Healthcare','2015 Healthcare','2016 Healthcare', { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }],
+['United States', 2644.03 , 2725.86 , 2876.45 , 3047.12 , 3179.83,'4%', '3%','6%','6%','4%'
+], 
+['China', 389.90 , 453.81   , 502.84 ,548.82 , 559.06,'20%','16%','11%','9%','2%'
+], 
+['Japan', 669.37 , 556.38 , 525.40 ,477.82 , 540.76,'2%','-','-','-','13%'
+], 
+['Germany',381.59 , 409.59 , 426.31, 373.99, 387.40,'-','7%','4%','-','4%'
+], 
+['France',303.56,321.35, 330.38, 279.89, 284.50,'-','6%','3%','-','2%'
+], 
+['United Kingdom', 222.00, 267.74, 293.94, 282.58, 258.79,'1%','21%','10%','-','-'
+], 
+['Italy', 185.64 ,190.73, 193.90 ,164.69 ,166.15,'-','3%','2%','-','1%'
+], 
+['Brazil',  190.72 , 197.25,  206.22 ,159.86 , 165.22,'-','3%','5%','-','3%'
+], 
+['Canada', 186.82 , 186.71 ,179.38 ,161.83, 161.79,'2%','-','-','-','-'
+], 
+['Australia', 138.00, 135.16 ,132.34 ,116.33, 120.69,'4%','-','-','-','4%'
+],
+]); //growth data, including 'perceratage' for annotation 
+
+        var options2 = {
+          title : 'Fastest Growing Countries in Healthcare (Billions $)',
+          vAxis: {title: 'Spending in Billions ($)'},
+          hAxis: {title: 'Country'},
+          bar: {groupWidth: '90%'},
+          colors:['#44B3C2',"#F1A94E","#E45641","#5D4C46","#7B8D8E"]}
+          ;  //set up for option2 
+          
+        var options1 = {
+          title : 'Fastest Growing Countries in Healthcare Percentage (Positive Increase Only)',
+          vAxis: {title: 'Spending in Billions ($) vs %'},
+          hAxis: {title: 'Country'},
+          bar: {groupWidth: '90%'},
+          colors:['#44B3C2',"#F1A94E","#E45641","#5D4C46","#7B8D8E"]}
+          ;  //set up for option1
+
+       var chart = new  google.visualization.ColumnChart(document.getElementById("chart_div"));
+            
+          if (selValue == 'Compare2') {
+              var view = new google.visualization.DataView(Data);
+                               view.setColumns([0, 1,2,3,4,5]);
+                               options = options2; 
+          }  //if function for making selection of different dataset, choose without annotation
+
+          if (selValue == 'Compare1') {
+               var view = new google.visualization.DataView(Data);
+                 view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 6,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: "stringify",
+                         sourceColumn: 7,
+                         type: "string",
+                         role: "annotation" },
+                       3,
+                       { calc: "stringify",
+                         sourceColumn: 8,
+                         type: "string",
+                         role: "annotation" },
+                       4,
+                       { calc: "stringify",
+                         sourceColumn: 9,
+                         type: "string",
+                         role: "annotation" },
+                       5,
+                       { calc: "stringify",
+                         sourceColumn: 10,
+                         type: "string",
+                         role: "annotation" }
+                         ]);  //if function for making selection of different dataset, choose with annotation
+
+                 options = options1; //use different options 
+           }
+
+            chart.draw(view, options); //draw chart 
+          }
+
+          }
+
+
+
+google.charts.setOnLoadCallback(Change7);    //set up setOnLoadCallback
+
+function Change7() {
+       
+    var listbox = document.getElementById("dropdown7");   //get dropdown value when make selection 
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;
+
+google.charts.setOnLoadCallback(drawVisualization1);   //set up setOnLoadCallback
+
+function drawVisualization1() {
+
+var Data = google.visualization.arrayToDataTable([
+['Countries','2012 Education','2013 Education','2014 Education','2015 Education','2016 Education', { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }, { role: 'annotation' }],
+['United States', 1016.50 ,1049.21 , 1075.24 , 1111.55 , 1141.10 ,'-','3%','2%','3%','3%'
+],
+['Germany',  174.84 ,185.19  , 191.85 ,162.48 , 167.80 ,'-','6%','4%','-','3%'
+], 
+['United Kingdom', 148.35 , 153.88 , 171.92 ,162.47 , 145.91 , '0%','4%','12%','-','-'
+], 
+['France',146.44 , 154.62 ,157.21 , 133.23 ,134.25 ,'-','6%','2%','-','1%'
+],  
+['South Korea', 63.49 ,  67.44 , 73.66 , 72.16 , 73.35,  '6%','6%','9%','-','2%'
+], 
+['Italy', 84.65 ,88.73 , 87.69 , 74.79, 71.58 ,'-','5%','-','-','-'
+], 
+['Australia',75.42 ,82.56 ,75.92 ,71.92 ,63.89 ,'6%','9%','-','-','-'
+], 
+['Mexico', 61.29, 59.85 , 69.15 ,61.28, 52.92 ,'2%','-','16%','-','-'
+], 
+['Argentina', 29.19,30.01,28.22 ,34.35 ,31.07 ,'4%','3%','-','22%','-'
+], 
+['South Africa', 25.25 , 22.05 ,21.20, 18.91 , 17.60 , '2%','-','-','-','-'
+], 
+]);    //growth data, including 'perceratage' for annotation 
+
+        var options2 = {
+          title : 'Fastest Growing Countries in Education (Billions $)',
+          vAxis: {title: 'Spending in Billions ($)'},
+          hAxis: {title: 'Country'},
+          bar: {groupWidth: '90%'},
+          colors:['#44B3C2',"#F1A94E","#E45641","#5D4C46","#7B8D8E"]}
+          ;  //set up for option2 
+          
+        var options1 = {
+          title : 'Fastest Growing Countries in Education Percentage (Positive Increase Only)',
+          vAxis: {title: 'Spending in Billions ($) vs %'},
+          hAxis: {title: 'Country'},
+          bar: {groupWidth: '90%'},
+          colors:['#44B3C2',"#F1A94E","#E45641","#5D4C46","#7B8D8E"]}
+          ;  //set up for option1
+
+       var chart = new  google.visualization.ColumnChart(document.getElementById("chart_div2"));
+            
+          if (selValue == 'Compare2') {
+              var view = new google.visualization.DataView(Data);
+                               view.setColumns([0, 1,2,3,4,5]);
+                               options = options2; //use different options2
+          } //if function for making selection of different dataset, choose without annotation
+
+          if (selValue == 'Compare1') {
+               var view = new google.visualization.DataView(Data);
+                 view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 6,
+                         type: "string",
+                         role: "annotation" },
+                       2,
+                       { calc: "stringify",
+                         sourceColumn: 7,
+                         type: "string",
+                         role: "annotation" },
+                       3,
+                       { calc: "stringify",
+                         sourceColumn: 8,
+                         type: "string",
+                         role: "annotation" },
+                       4,
+                       { calc: "stringify",
+                         sourceColumn: 9,
+                         type: "string",
+                         role: "annotation" },
+                       5,
+                       { calc: "stringify",
+                         sourceColumn: 10,
+                         type: "string",
+                         role: "annotation" }
+                         ]); //if function for making selection of different dataset, choose with annotation
+
+                 options = options1; //use different options1
+           }
+
+            chart.draw(view, options); //draw chart 
+          }
+
+}
+
+    </script>
+
+</head>
+<body>
+
+<div class="topnav">
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+<h2> 4. Fastest Growing Countries in Healthcare and Educational Spending </h2>
+    <select id="dropdown6" name='select2' onchange="Change6()">
+    <option selected disabled>Choose Below Options</option>
+    <option value="Compare2"> Fastest growing countries in fixed $ </option>
+    <option value="Compare1"> Fastest growing countries in % </option>
+    </select>
+    <div id="chart_div" style="width: 2000px; height: 500px;"></div>
+
+    <select id="dropdown7" name='select3' onchange="Change7()">
+    <option selected disabled>Choose Below Options</option>
+    <option value="Compare2"> Fastest growing countries in fixed $ </option>
+    <option value="Compare1"> Fastest growing countries in % </option>
+    </select>
+    <div id="chart_div2" style="width: 2000px; height: 500px;"></div>
+</div>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project-Siqi Jiang</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+   
+        google.charts.load('current', {'packages':['corechart']});  //load package 
+       
+          google.charts.setOnLoadCallback(DrawFirstMap);    //set up setOnLoadCallback
+          
+          //Geochart for GDP and Popuation
+          function DrawFirstMap() {
+          var GDP = google.visualization.arrayToDataTable([
+            ['Country', 'GDP'],
+            ['Argentina', 332.98],
+            ['Australia', 927.81],
+            ['Brazil', 1667.02],
+            ['Canada', 1371.15],
+            ['China', 5101.70],
+            ['France', 2690.22],
+            ['Germany', 3418.01],
+            ['India', 1341.89],
+            ['Indonesia', 539.58],
+            ['Italy', 2185.16],
+            ['Japan', 5231.38],
+            ['Mexico', 900.05],
+            ['Russia', 1222.64],
+            ['Saudi Arabia', 429.10],
+            ['South Africa', 295.94],
+            ['South Korea', 901.93],
+            ['Turkey', 644.64],
+            ['United Kingdom', 2394.79],
+            ['United States', 14448.93],
+          ]);
+           var options = {height: 350,colorAxis: {colors: ['#62B5E5', '#012169']},};
+
+           var chart = new google.visualization.GeoChart(document.getElementById("GDP"))                
+         
+           chart.draw(GDP, options);
+           } //load data and draw the first map 
+    
+
+       
+        function ChangeMap() {
+       
+        var listbox = document.getElementById("dropdown1");
+        var selIndex = listbox.selectedIndex;
+        var selValue = listbox.options[selIndex].value; //get dropdown value when make selection 
+       
+        google.charts.setOnLoadCallback(DrawMap);
+        
+        function DrawMap() {
+
+          var GDP2009 = google.visualization.arrayToDataTable([
+            ['Country', 'GDP 2009'],
+            ['Argentina', 332.98],
+            ['Australia', 927.81],
+            ['Brazil', 1667.02],
+            ['Canada', 1371.15],
+            ['China', 5101.70],
+            ['France', 2690.22],
+            ['Germany', 3418.01],
+            ['India', 1341.89],
+            ['Indonesia', 539.58],
+            ['Italy', 2185.16],
+            ['Japan', 5231.38],
+            ['Mexico', 900.05],
+            ['Russia', 1222.64],
+            ['Saudi Arabia', 429.10],
+            ['South Africa', 295.94],
+            ['South Korea', 901.93],
+            ['Turkey', 644.64],
+            ['United Kingdom', 2394.79],
+            ['United States', 14448.93],
+          ]); //2009 GDP data
+
+          var Popu2009 = google.visualization.arrayToDataTable([
+            ['Country', 'Population 2009'],
+            ['Argentina', 40.80 ],
+            ['Australia', 21.74 ],
+            ['Brazil',   194.90  ],
+            ['Canada',  33.79 ],
+            ['China',  1352.07 ],
+            ['France',  64.35 ],
+            ['Germany',  82.00 ],
+            ['India',  1214.27 ],
+            ['Indonesia',  239.34 ],
+            ['Italy',  59.00 ],
+            ['Japan',  128.57 ],
+            ['Mexico',  115.51 ],
+            ['Russia',  143.09 ],
+            ['Saudi Arabia',  26.66 ],
+            ['South Africa',  50.97 ],
+            ['South Korea', 49.38 ],
+            ['Turkey',  71.34 ],
+            ['United Kingdom', 62.04 ],
+            ['United States', 306.08 ],
+          ]); //2009 population data
+         
+          var GDP2016 = google.visualization.arrayToDataTable([
+            ['Country', 'GDP 2016'],
+            ['Argentina', 557.53],
+            ['Australia', 1210.03],
+            ['Brazil', 1796.28],
+            ['Canada', 1526.71],
+            ['China', 11137.95],
+            ['France', 2471.29],
+            ['Germany', 3495.16],
+            ['India', 2290.43],
+            ['Indonesia', 931.88],
+            ['Italy', 1869.20],
+            ['Japan', 4926.67],
+            ['Mexico', 1077.83],
+            ['Russia', 1282.72],
+            ['Saudi Arabia', 644.94],
+            ['South Africa', 296.34],
+            ['South Korea', 1414.80],
+            ['Turkey', 863.72],
+            ['United Kingdom', 2659.24],
+            ['United States', 18707.19],
+          ]); //2016 GDP data
+
+          var Popu2016 = google.visualization.arrayToDataTable([
+            ['Country', 'Population 2016'],
+            ['Argentina', 43.85 ],
+            ['Australia', 24.13 ],
+            ['Brazil',    207.65   ],
+            ['Canada',   36.29  ],
+            ['China',   1403.50  ],
+            ['France',   66.73  ],
+            ['Germany',   82.18  ],
+            ['India',   1324.17 ],
+            ['Indonesia', 261.12],
+            ['Italy',   60.67 ],
+            ['Japan',   127.75 ],
+            ['Mexico',   127.54 ],
+            ['Russia',  143.96 ],
+            ['Saudi Arabia',  32.28  ],
+            ['South Africa',   56.02  ],
+            ['South Korea',  50.79 ],
+            ['Turkey',  79.51 ],
+            ['United Kingdom', 65.38 ],
+            ['United States',  322.18 ],
+          ]); //2016 Population Data
+         
+          var optionGDP1 = {height: 350, colorAxis: {colors: ['#62B5E5', '#012169']},}; //option for GDP1
+
+          var optionPopu1 = {height: 350, colorAxis: {colors: ['#D0D0CE', '#C4D600']},}; //option for Population1
+
+          var optionGDP2 = {height: 350, colorAxis: {colors: ['#62B5E5', '#0097A9']},}; //option for GDP2
+
+          var optionPopu2 = {height: 350, colorAxis: {colors: ['#D0D0CE', '#E3E48D']},}; //option for Population2
+
+          var chart = new google.visualization.GeoChart(document.getElementById("GDP"))  //create geochart         
+         
+          if (selValue == 'Gdp2009') {
+            country = GDP2009;
+            options = optionGDP1;     //if function, for dropdown select 
+          }
+          if (selValue == 'Popu2009') {
+            country = Popu2009;     
+            options = optionPopu1;    //if function, for dropdown select 
+          }
+         
+          if (selValue == 'Gdp2016') {
+            country = GDP2016;
+            options = optionGDP2;     //if function, for dropdown select 
+          }
+
+          if (selValue == 'Popu2016') {
+            country = Popu2016;
+            options = optionPopu2;    //if function, for dropdown select 
+          }
+         
+          chart.draw(country, options); //draw chart 
+        }
+
+      }
+
+      
+</script>
+
+</head>
+<body>
+
+<div class="topnav">
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+<h2> Exploratory of Gross Domestic Product (GDP) and Population </h2>
+
+<b style='text-align:center;'> GeoCart to Compare GDP and Population by Country in 2009 and 2016 </b>
+<th>
+  <select id="dropdown1" name='select1' onchange="ChangeMap()">
+  <option value="Gdp2009">2009 GDP in Billion US$ </option>
+  <option value="Popu2009">2009 Population in Million </option>
+  <option value="Gdp2016">2016 GDP in Billion US$</option>
+  <option value="Popu2016">2016 Population in Million </option>
+ </select></th>
+
+<div id="GDP" style="width: 800px; height: 400px;"></div>
+</div>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Individual Project</title>
+<meta charset="utf-8">
+<meta name="Individual Project-Siqi Jiang" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #4D648D;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  padding: 10px;
+  height: 200px; 
+}
+
+.footer {
+  padding: 10px;
+  font-size: 50%;
+  font: normal 50% arial, sans-serif;
+  color: #555;
+}
+
+</style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+google.charts.load("current", {packages:["corechart"]}); //load package 
+google.charts.setOnLoadCallback(Change7);  //set up setOnLoadCallback
+
+function Change7() {
+       
+    var listbox = document.getElementById("dropdown7");   //get dropdown value when make selection 
+    var selIndex = listbox.selectedIndex;
+    var selValue = listbox.options[selIndex].value;
+    
+      google.charts.setOnLoadCallback(Finding1);  //set up setOnLoadCallback
+      function Finding1() {
+        var data2016 = google.visualization.arrayToDataTable([
+          ['Country', 'Military Spending in 2016'],
+          ['Japan',   46.42  ],
+          ['Germany',   41.80  ],
+          ['United Kingdom', 48.89],
+          ['Russia',   70.60 ],
+          ['France',  57.51 ],
+          ['Saudi Arabia',  63.89 ],
+          ['China', 215.03],
+          ['India', 57.41 ],
+          ['United States',602.77],
+        ]); //dataset for 2016
+        var data2015 = google.visualization.arrayToDataTable([
+          ['Country', 'Military Spending in 2015'],
+          ['Japan',    42.17   ],
+          ['Germany',    39.88  ],
+          ['United Kingdom', 54.53 ],
+          ['Russia',   66.15  ],
+          ['France',  55.45  ],
+          ['Saudi Arabia',   88.30  ],
+          ['China',  213.14 ],
+          ['India',    50.59  ],
+          ['United States', 599.35 ],
+        ]); //dataset for 2015
+
+        var options = {
+          title: 'The United States Military Spending Compare with Eight Countries',
+          pieSliceText: 'label',
+          slices: {  2: {offset: 0.3,color: '#96C0CE'}, 1: {offset: 0.3,color: '#74828F'},3: {offset: 0.3,color: '#BEB9B5'},4: {offset: 0.3,color: '#FEF6EB'},5: {offset: 0.3,color:'#814374'},0: {offset: 0.2, color: '#A31E39' },6: {offset: 0.3, color: '#525564' },7: {offset: 0.2, color: '#51A39D' },8: {offset: 0.1}},
+          is3D: true,
+          pieHole: 0.2,
+        }; //set up options for pie chart 
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        if (selValue == 'Compare1') {
+              var view = new google.visualization.DataView(data2016);
+                  options = options; 
+             }  //if function make selection of different year
+
+          if (selValue == 'Compare2') {
+              var view = new google.visualization.DataView(data2015);
+                 options = options; 
+           }  //if function, make selection of different year
+        chart.draw(view, options);
+      }
+    }
+    
+    </script>
+      
+
+</head>
+<body>
+
+<div class="topnav">
+  <a href="Index.html">Intro</a>
+  <a href="Graph1.html">Graph 1</a>
+  <a href="Graph2.html">Graph 2</a>
+  <a href="Graph3.html">Graph 3</a>
+  <a href="Graph4.html">Graph 4</a>
+  <a href="Graph5.html">Graph 5</a>
+</div>
+
+<div class="content">
+  <h2> 5. Relationships and Trends </h2>
+    <select id="dropdown7" name='select2'   onchange="Change7()">
+  <option value="Compare1">  Comparison 2016</option>
+  <option value="Compare2"> Comparison 2015</option>
+  </select>
+    <div id="piechart" style="width: 900px; height: 500px; border: 1px"></div>
+    <p><b>Finding:</b></p>
+    <p>In 2016, the United States's military spending was approximately equal to the Eight major countries' in the world. </p>
+</div>
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+<div class="footer">
+  <p><b>Data Source:</b><br>
+Stockholm International Peace Research Institute: <a href="https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS">Military</a>
+<b>|</b> Organisation for Economic Co-operation and Development (OECD) Database: <a href="https://data.oecd.org/gdp/gross-domestic-product-gdp.htm">GDP</a>   <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Education</a> <a href="https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM"> Population</a> | Global Health Expenditure Database of WHO: <a href="https://nces.ed.gov/programs/digest/d17/tables/dt17_605.20.asp">Healthcare</a></p>
+Copyright &copy; <script>var d = new Date();document.write(d.getFullYear());</script> 
+| HTML5 | CSS3 | By SJ
+</div>
+
+
+</body>
+</html>
